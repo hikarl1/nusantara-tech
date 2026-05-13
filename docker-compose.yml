@@ -1,0 +1,55 @@
+version: '3.8'
+
+networks:
+  nusantara-net:
+    driver: bridge
+
+volumes:
+  db-data:
+  minio-data:
+
+services:
+
+  app:
+    build: ./app
+    container_name: app
+    env_file: .env
+    depends_on:
+      - db
+      - minio
+    networks:
+      - nusantara-net
+
+  db:
+    image: postgres:15-alpine
+    container_name: db
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - nusantara-net
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    command: server /data --console-address ":9001"
+    env_file: .env
+    volumes:
+      - minio-data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - nusantara-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+    networks:
+      - nusantara-net

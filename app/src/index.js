@@ -41,4 +41,7 @@ app.delete('/mahasiswa/:id', async (req, res) => {
     res.json({ message: 'Deleted' });
 });
 
+const uploadRouter = require('./upload');
+app.use('/', uploadRouter);
+
 app.listen(3000, () => console.log('App running on port 3000'));

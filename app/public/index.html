@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nusantara Tech — Sistem Akademik</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 0 20px;
+        color: #333;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 6px 0;
+        display: inline-block;
+        box-sizing: border-box;
+      }
+      input {
+        width: 45%;
+        margin-right: 2%;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f8f9fa;
+      }
+      .section {
+        margin-bottom: 40px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Panel Administrasi Akademik</h1>
+
+    <div class="section">
+      <h2>Data Mahasiswa (PostgreSQL)</h2>
+      <input id="nama" placeholder="Nama Lengkap" />
+      <input id="nim" placeholder="NIM" />
+      <button onclick="tambahMahasiswa()">Tambah Data</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>NIM</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tabel"></tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Upload Dokumen Akademik (MinIO)</h2>
+      <input type="file" id="fileInput" style="width: 70%" />
+      <button onclick="uploadFile()">Upload ke MinIO</button>
+      <p id="uploadStatus" style="font-weight: bold; color: green"></p>
+    </div>
+
+    <script>
+      // Fungsi memuat data mahasiswa dari database
+      async function loadMahasiswa() {
+        const res = await fetch("/mahasiswa");
+        const data = await res.json();
+        const tbody = document.getElementById("tabel");
+        tbody.innerHTML = data
+          .map(
+            (m) =>
+              `<tr><td>${m.id}</td><td>${m.nama}</td><td>${m.nim}</td>
+         <td><button style="background-color:#dc3545;" onclick="hapus(${m.id})">Hapus</button></td></tr>`,
+          )
+          .join("");
+      }
+
+      // Fungsi menambah data mahasiswa
+      async function tambahMahasiswa() {
+        const nama = document.getElementById("nama").value;
+        const nim = document.getElementById("nim").value;
+        if (!nama || !nim) return alert("Nama dan NIM wajib diisi!");
+
+        await fetch("/mahasiswa", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nama, nim }),
+        });
+        document.getElementById("nama").value = "";
+        document.getElementById("nim").value = "";
+        loadMahasiswa();
+      }
+
+      // Fungsi menghapus data mahasiswa
+      async function hapus(id) {
+        if (confirm("Yakin ingin menghapus data ini?")) {
+          await fetch(`/mahasiswa/${id}`, { method: "DELETE" });
+          loadMahasiswa();
+        }
+      }
+
+      // Fungsi mengunggah berkas ke server MinIO
+      async function uploadFile() {
+        const file = document.getElementById("fileInput").files[0];
+        if (!file) return alert("Pilih file terlebih dahulu!");
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        document.getElementById("uploadStatus").innerText = "Sedang mengunggah...";
+        const res = await fetch("/upload", { method: "POST", body: formData });
+        const data = await res.json();
+        document.getElementById("uploadStatus").innerText = data.message;
+      }
+
+      // Load data otomatis saat halaman dibuka
+      loadMahasiswa();
+    </script>
+  </body>
+</html>

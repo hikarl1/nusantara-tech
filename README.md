@@ -258,7 +258,7 @@ docker-compose logs app
 
 ### 1. Container Berjalan di Docker Desktop
 
-![Docker Desktop - Semua container running](screenshots/docker-desktop.png)
+![Docker Desktop - Semua container running](screenshots/docker-dekstop.png)
 
 > Tampilan Docker Desktop menunjukkan 4 container aktif: `app`, `nginx`, `db`, dan `minio`.
 

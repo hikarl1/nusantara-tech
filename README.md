@@ -24,12 +24,12 @@ Project ini dikembangkan sebagai bagian dari tugas kelompok mata kuliah Containe
 
 ## Fitur Aplikasi
 
-- 📝 **Manajemen Data Mahasiswa** — Tambah dan hapus data mahasiswa (Nama & NIM) yang tersimpan di database PostgreSQL secara real-time.
-- 📤 **Upload Dokumen Akademik** — Upload file dokumen dari browser langsung ke MinIO Object Storage.
-- 🔍 **Cek Koneksi Database** — Endpoint untuk memverifikasi koneksi ke PostgreSQL.
-- 🗂️ **Object Storage Otomatis** — Bucket `uploads` dibuat otomatis saat aplikasi pertama kali dijalankan.
-- 🌐 **Reverse Proxy dengan Nginx** — Seluruh request HTTP masuk melalui Nginx di port 80, lalu diteruskan ke Node.js di port 3000.
-- 🐳 **Full Containerized** — Semua service berjalan dalam container Docker yang terisolasi dan dikelola dengan Docker Compose.
+- **Manajemen Data Mahasiswa** — Tambah dan hapus data mahasiswa (Nama & NIM) yang tersimpan di database PostgreSQL secara real-time.
+- **Upload Dokumen Akademik** — Upload file dokumen dari browser langsung ke MinIO Object Storage.
+- **Cek Koneksi Database** — Endpoint untuk memverifikasi koneksi ke PostgreSQL.
+- **Object Storage Otomatis** — Bucket `uploads` dibuat otomatis saat aplikasi pertama kali dijalankan.
+- **Reverse Proxy dengan Nginx** — Seluruh request HTTP masuk melalui Nginx di port 80, lalu diteruskan ke Node.js di port 3000.
+- **Full Containerized** — Semua service berjalan dalam container Docker yang terisolasi dan dikelola dengan Docker Compose.
 
 ---
 
@@ -266,7 +266,7 @@ docker-compose logs app
 
 ### 2. Tampilan Aplikasi Web
 
-![Panel Administrasi Akademik](screenshots/web-app.png)
+![Panel Administrasi Akademik](screenshots/akses-web.png)
 
 > Aplikasi web diakses di http://localhost menampilkan Panel Administrasi Akademik dengan data mahasiswa dari PostgreSQL dan form upload ke MinIO.
 
@@ -274,23 +274,15 @@ docker-compose logs app
 
 ### 3. Upload File Berhasil
 
-![Upload berhasil](screenshots/upload-success.png)
+![Upload berhasil](screenshots/upload.png)
 
 > Pesan "Upload berhasil" muncul setelah file berhasil dikirim dari browser ke MinIO Object Storage.
 
 ---
 
-### 4. Dashboard MinIO
+### 4. File Berhasil Masuk ke Bucket MinIO
 
-![MinIO Dashboard Login](screenshots/minio-login.png)
-
-> Dashboard MinIO diakses di http://localhost:9001 dengan login menggunakan kredensial dari file `.env`.
-
----
-
-### 5. File Berhasil Masuk ke Bucket MinIO
-
-![File di bucket uploads MinIO](screenshots/minio-bucket.png)
+![File di bucket uploads MinIO](screenshots/dashboard-minio.png)
 
 > File yang diupload tersimpan di bucket `uploads` pada MinIO Object Storage, lengkap dengan informasi nama file, waktu upload, dan ukuran file.
 

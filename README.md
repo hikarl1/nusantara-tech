@@ -1,4 +1,4 @@
-# 🏛️ Nusantara Tech — Sistem Akademik
+# Nusantara Tech — Sistem Akademik
 
 > Aplikasi web berbasis **Node.js + Docker** untuk manajemen data mahasiswa dan penyimpanan dokumen akademik menggunakan **PostgreSQL** sebagai database relasional dan **MinIO** sebagai object storage.
 
@@ -6,7 +6,7 @@ Project ini dikembangkan sebagai bagian dari tugas kelompok mata kuliah Containe
 
 ---
 
-## 📋 Daftar Isi
+## Daftar Isi
 
 - [Fitur Aplikasi](#-fitur-aplikasi)
 - [Teknologi yang Digunakan](#-teknologi-yang-digunakan)
@@ -22,7 +22,7 @@ Project ini dikembangkan sebagai bagian dari tugas kelompok mata kuliah Containe
 
 ---
 
-## ✨ Fitur Aplikasi
+## Fitur Aplikasi
 
 - 📝 **Manajemen Data Mahasiswa** — Tambah dan hapus data mahasiswa (Nama & NIM) yang tersimpan di database PostgreSQL secara real-time.
 - 📤 **Upload Dokumen Akademik** — Upload file dokumen dari browser langsung ke MinIO Object Storage.
@@ -33,7 +33,7 @@ Project ini dikembangkan sebagai bagian dari tugas kelompok mata kuliah Containe
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 | Teknologi | Versi | Fungsi |
 |---|---|---|
@@ -50,7 +50,7 @@ Project ini dikembangkan sebagai bagian dari tugas kelompok mata kuliah Containe
 
 ---
 
-## 📁 Struktur Project
+## Struktur Project
 
 ```
 nusantara-tech/
@@ -82,7 +82,7 @@ nusantara-tech/
 
 ---
 
-## 🚀 Cara Menjalankan Project
+## Cara Menjalankan Project
 
 ### Prasyarat
 
@@ -126,7 +126,7 @@ MINIO_ROOT_PASSWORD=minioadmin123
 APP_PORT=3000
 ```
 
-> ⚠️ **Penting:** File `.env` tidak akan di-push ke GitHub karena sudah ditambahkan ke `.gitignore`. Jangan pernah menyimpan password asli di `.env.example`.
+> **Penting:** File `.env` tidak akan di-push ke GitHub karena sudah ditambahkan ke `.gitignore`. Jangan pernah menyimpan password asli di `.env.example`.
 
 ---
 
@@ -177,7 +177,7 @@ docker-compose down
 
 ---
 
-## 🌐 Cara Mengakses Aplikasi
+## Cara Mengakses Aplikasi
 
 ### Aplikasi Web Utama
 
@@ -216,7 +216,7 @@ Langkah akses:
 
 ---
 
-## 🧪 Cara Testing Upload
+## Cara Testing Upload
 
 ### Testing Upload File ke MinIO
 
@@ -254,7 +254,7 @@ docker-compose logs app
 
 ---
 
-## 📸 Screenshot Hasil Pengujian
+## Screenshot Hasil Pengujian
 
 ### 1. Container Berjalan di Docker Desktop
 
@@ -296,7 +296,7 @@ docker-compose logs app
 
 ---
 
-## 📡 Dokumentasi API / Endpoint
+## Dokumentasi API / Endpoint
 
 | Method | Endpoint | Deskripsi |
 |---|---|---|
@@ -329,7 +329,7 @@ file: [binary file data]
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables
 
 Berdasarkan file `.env.example`:
 
@@ -342,13 +342,13 @@ Berdasarkan file `.env.example`:
 | `MINIO_ROOT_PASSWORD` | _(kosong)_ | Password root MinIO |
 | `APP_PORT` | `3000` | Port internal aplikasi Node.js |
 
-> 💡 **Tips:** Salin `.env.example` ke `.env` dan isi nilai yang kosong sebelum menjalankan Docker Compose.
+> **Tips:** Salin `.env.example` ke `.env` dan isi nilai yang kosong sebelum menjalankan Docker Compose.
 
 ---
 
-## 🔧 Kendala dan Solusi
+## Kendala dan Solusi
 
-### ❌ Error: `dockerfile parse error on line 1: unknown instruction`
+### Error: `dockerfile parse error on line 1: unknown instruction`
 
 **Penyebab:** Nama file Dockerfile salah casing (misal `dockerfile` bukan `Dockerfile`).
 
@@ -363,7 +363,7 @@ docker-compose up --build -d
 
 ---
 
-### ❌ Container `app` tidak bisa terkoneksi ke `db`
+### Container `app` tidak bisa terkoneksi ke `db`
 
 **Penyebab:** Container database belum siap menerima koneksi saat app startup.
 
@@ -374,7 +374,7 @@ docker-compose restart app
 
 ---
 
-### ❌ Upload file gagal / error 400
+### Upload file gagal / error 400
 
 **Penyebab:** Tidak ada file yang dipilih sebelum klik tombol upload.
 
@@ -382,7 +382,7 @@ docker-compose restart app
 
 ---
 
-### ❌ MinIO dashboard tidak bisa diakses di port 9001
+### MinIO dashboard tidak bisa diakses di port 9001
 
 **Penyebab:** Container MinIO belum selesai startup atau port konflik.
 
@@ -397,7 +397,7 @@ docker-compose logs minio
 
 ---
 
-### ❌ `version` attribute is obsolete warning
+### `version` attribute is obsolete warning
 
 **Penyebab:** Docker Compose versi terbaru menganggap atribut `version: '3.8'` sudah usang.
 
@@ -405,7 +405,7 @@ docker-compose logs minio
 
 ---
 
-## 👥 Anggota Kelompok
+## Anggota Kelompok
 
 **Kelompok 4 — Case Based 2**
 
